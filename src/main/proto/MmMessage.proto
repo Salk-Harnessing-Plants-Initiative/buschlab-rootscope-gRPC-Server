@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "at.ac.oeaw.gmi.busch.RootScopeService";
+option java_outer_classname = "MmMessage";
+option objc_class_prefix = "MMM";
+
+package RootScopeService;
+
+service MmService {
+    rpc GetRoi (RoiRequest) returns (RoiReply) {}
+    rpc GetImgData (ImgDataRequest) returns (ImgDataReply) {}
+}
+
+message RoiRequest {
+    string aver = 1;
+}
+
+message RoiReply {
+    int32 roiX = 1;
+    int32 roiY = 2;
+}
+
+message ImgDataRequest {
+    string aver = 1;
+}
+
+message ImgDataReply {
+    bytes imgData = 1;
+}
