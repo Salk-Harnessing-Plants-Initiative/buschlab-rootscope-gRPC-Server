@@ -1,3 +1,5 @@
+package grpc.server;
+
 import at.ac.oeaw.gmi.busch.RootScopeService.*;
 import com.google.protobuf.ByteString;
 import io.grpc.Server;
@@ -17,9 +19,7 @@ public class MMServer {
 
     private Server server;
 
-    private void start() throws IOException {
-        int port = 50051;
-
+    private void start(int port) throws IOException {
         try {
             SelfSignedCertificate ssc = new SelfSignedCertificate();
 
@@ -66,7 +66,7 @@ public class MMServer {
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         final MMServer server = new MMServer();
-        server.start();
+        server.start(Integer.parseInt(args[0]));
         server.blockUntilShutdown();
     }
 
