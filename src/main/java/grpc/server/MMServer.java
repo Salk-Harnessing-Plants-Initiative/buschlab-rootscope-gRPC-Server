@@ -13,10 +13,9 @@ public class MMServer {
     private static final Logger logger = Logger.getLogger(MMServer.class.getName());
 
     private Server server;
-    private static MmServiceImpl service;
+    private static MmServiceImpl service = new MmServiceImpl();
 
     public static void SetServiceDataProvider(DataProvider dataProvider) {
-        service = new MmServiceImpl();
         service.setDataProvider(dataProvider);
     }
 

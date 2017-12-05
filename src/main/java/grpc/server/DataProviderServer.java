@@ -16,4 +16,9 @@ public class DataProviderServer implements DataProvider{
         }
         return null;
     }
+
+    @Override
+    public String getCameraProperties() {
+        return "i don't know...";
+    }
 }
