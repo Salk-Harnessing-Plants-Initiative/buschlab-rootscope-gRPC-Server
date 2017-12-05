@@ -2,6 +2,7 @@ package grpc.server;
 
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
+import io.grpc.ServerBuilder;
 import io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.NettyServerBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
@@ -23,23 +24,26 @@ public class MMServer {
 
     private void start(int port) throws IOException {
 
-        File serverCertFile = new File(getClass().getClassLoader().getResource("cert.pem").getFile());
-        File serverKeyFile = new File(getClass().getClassLoader().getResource("key.pem").getFile());
+        //File serverCertFile = new File(getClass().getClassLoader().getResource("cert.pem").getFile());
+        //File serverKeyFile = new File(getClass().getClassLoader().getResource("key.pem").getFile());
 
-        try {
-            SelfSignedCertificate ssc = new SelfSignedCertificate();
+        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/badserver.pem");
+        File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/badserver.key");
+
+//        try {
+//            //SelfSignedCertificate ssc = new SelfSignedCertificate();
 
             server = NettyServerBuilder.forPort(port)
+                    .useTransportSecurity(serverCertFile,serverKeyFile)
                     .maxMessageSize(1048576000)
                     .addService(service)
-                    .useTransportSecurity(serverCertFile,serverKeyFile)
                     //.sslContext(GrpcSslContexts.forServer(ssc.certificate(),ssc.privateKey()).build())
                     .build()
                     .start();
 
-        } catch (CertificateException e) {
-            e.printStackTrace();
-        }
+//        } catch (CertificateException e) {
+//            e.printStackTrace();
+//        }
 
         logger.info("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
