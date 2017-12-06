@@ -11,6 +11,15 @@ service MmService {
     rpc GetRoi (RoiRequest) returns (RoiReply) {}
     rpc GetImgData (ImgDataRequest) returns (ImgDataReply) {}
     rpc GetCameraProperties(CameraPropertiesRequest) returns (CameraPropertiesReply) {}
+    rpc AutoScaleContrast(AutoScaleContrastRequest) returns (AutoScaleContrastRelpy) {}
+}
+
+message AutoScaleContrastRequest{
+    string req = 1;
+}
+
+message AutoScaleContrastRelpy{
+    string relpy = 1;
 }
 
 message CameraPropertiesRequest {

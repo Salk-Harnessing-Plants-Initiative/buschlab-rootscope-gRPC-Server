@@ -21,4 +21,9 @@ public class DataProviderServer implements DataProvider{
     public String getCameraProperties() {
         return "i don't know...";
     }
+
+    @Override
+    public String autoScaleContrast() {
+        return "AutoScaleContrast";
+    }
 }
