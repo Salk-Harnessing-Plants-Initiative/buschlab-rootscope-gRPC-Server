@@ -33,10 +33,18 @@ class MmServiceImpl extends MmServiceGrpc.MmServiceImplBase {
     }
 
     @Override
+    public void getCameraProperties(CameraPropertiesRequest req,
+                                    StreamObserver<CameraPropertiesReply> responseObserver) {
+        CameraPropertiesReply.Builder builder = CameraPropertiesReply.newBuilder();
+        builder.setReply(dataProvider.getCameraProperties());
+        responseObserver.onNext(builder.build());
+        responseObserver.onCompleted();
+    }
+
+    @Override
     public void getImgData(ImgDataRequest req, StreamObserver<ImgDataReply> responseObserver) {
 
         ImgDataReply.Builder builder = ImgDataReply.newBuilder();
-
         builder.setImgData(ByteString.copyFrom(dataProvider.getImgData1()));
 
 //        File file = new File("/Users/alexander.bindeus/Desktop/bigpng.png");

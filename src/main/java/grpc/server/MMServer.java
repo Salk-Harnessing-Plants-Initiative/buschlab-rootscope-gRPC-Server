@@ -1,15 +1,8 @@
 package grpc.server;
 
-import io.grpc.ManagedChannelBuilder;
 import io.grpc.Server;
-import io.grpc.ServerBuilder;
-import io.grpc.netty.GrpcSslContexts;
 import io.grpc.netty.NettyServerBuilder;
-import io.netty.handler.ssl.util.SelfSignedCertificate;
-
-import java.io.File;
 import java.io.IOException;
-import java.security.cert.CertificateException;
 import java.util.logging.Logger;
 
 public class MMServer {
@@ -24,26 +17,18 @@ public class MMServer {
 
     private void start(int port) throws IOException {
 
-        File serverCertFile = new File(getClass().getClassLoader().getResource("server.crt").getFile());
-        File serverKeyFile = new File(getClass().getClassLoader().getResource("server1.key").getFile());
+//        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/server.crt");
+//        File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/server1.key");
 
-        //File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/badserver.pem");
-        //File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/badserver.key");
+//        SelfSignedCertificate ssc = new SelfSignedCertificate();
 
-//        try {
-//            //SelfSignedCertificate ssc = new SelfSignedCertificate();
-
-            server = NettyServerBuilder.forPort(port)
-                    .useTransportSecurity(serverCertFile,serverKeyFile)
-                    .maxMessageSize(1048576000)
-                    .addService(service)
-                    //.sslContext(GrpcSslContexts.forServer(ssc.certificate(),ssc.privateKey()).build())
-                    .build()
-                    .start();
-
-//        } catch (CertificateException e) {
-//            e.printStackTrace();
-//        }
+        server = NettyServerBuilder.forPort(port)
+                //.useTransportSecurity(serverCertFile,serverKeyFile)
+                //.sslContext(GrpcSslContexts.forServer(ssc.certificate(),ssc.privateKey()).build())
+                .maxMessageSize(1048576000)
+                .addService(service)
+                .build()
+                .start();
 
         logger.info("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {

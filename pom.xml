@@ -58,11 +58,14 @@
             <artifactId>guava</artifactId>
             <version>23.5-jre</version>
         </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-tcnative-boringssl-static</artifactId>
-            <version>2.0.7.Final</version>
-        </dependency>
+
+        <!--there is no version of netty-tcnative for win 32 bit - NO ENCRYPTION !!!-->
+        <!--<dependency>-->
+            <!--<groupId>io.netty</groupId>-->
+            <!--<artifactId>netty-tcnative-boringssl-static</artifactId>-->
+            <!--<version>2.0.7.Final</version>-->
+            <!--<classifier>${os.detected.classifier}</classifier>-->
+        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -106,29 +109,14 @@
                         </goals>
                         <configuration>
                             <!---
-                            Relocation. Rename the com.google.protobuf package so it doesn't clash with
-                            the protobuf2 package in the Turn repo.
+                            Relocation. Rename the com.google package so it doesn't clash with
+                            the com.google package in the micro manager .
                              -->
-                            <!--sets the name of the final out jar-->
-                            <!--<finalName>server-shaded</finalName>-->
                             <relocations>
                                 <relocation>
                                     <pattern>com.google</pattern>
                                     <shadedPattern>shaded.com.google</shadedPattern>
                                 </relocation>
-                                <!--<relocation>-->
-                                    <!--<pattern>com.google.guava</pattern>-->
-                                    <!--<shadedPattern>com.google.guava.shaded</shadedPattern>-->
-                                <!--</relocation>-->
-                                <!--<relocation>-->
-                                    <!--<pattern>com.google.protobuf</pattern>-->
-                                    <!--<shadedPattern>com.google.protobuf3.shaded</shadedPattern>-->
-                                    <!--&lt;!&ndash;- Relocation supports exclusion. We don't need it, but it looks like this:-->
-                                    <!--<excludes>-->
-                                        <!--<exclude></exclude>-->
-                                    <!--</excludes>-->
-                                    <!--&ndash;&gt;-->
-                                <!--</relocation>-->
                             </relocations>
                             <artifactSet>
                                 <includes>
