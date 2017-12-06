@@ -24,11 +24,11 @@ public class MMServer {
 
     private void start(int port) throws IOException {
 
-        //File serverCertFile = new File(getClass().getClassLoader().getResource("cert.pem").getFile());
-        //File serverKeyFile = new File(getClass().getClassLoader().getResource("key.pem").getFile());
+        File serverCertFile = new File(getClass().getClassLoader().getResource("server.crt").getFile());
+        File serverKeyFile = new File(getClass().getClassLoader().getResource("server1.key").getFile());
 
-        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/badserver.pem");
-        File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/badserver.key");
+        //File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/badserver.pem");
+        //File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/badserver.key");
 
 //        try {
 //            //SelfSignedCertificate ssc = new SelfSignedCertificate();
