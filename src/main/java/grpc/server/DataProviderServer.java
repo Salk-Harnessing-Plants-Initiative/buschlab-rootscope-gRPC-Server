@@ -23,7 +23,7 @@ public class DataProviderServer implements DataProvider{
     }
 
     @Override
-    public String autoScaleContrast() {
-        return "AutoScaleContrast";
+    public boolean autoScaleContrast() {
+        return true;
     }
 }

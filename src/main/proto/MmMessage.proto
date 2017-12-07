@@ -15,11 +15,11 @@ service MmService {
 }
 
 message AutoScaleContrastRequest{
-    string req = 1;
+    bool req = 1;
 }
 
 message AutoScaleContrastRelpy{
-    string relpy = 1;
+    bool relpy = 1;
 }
 
 message CameraPropertiesRequest {

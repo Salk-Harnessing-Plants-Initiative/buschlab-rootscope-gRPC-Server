@@ -108,6 +108,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <!--<minimizeJar>true</minimizeJar>-->
                             <!---
                             Relocation. Rename the com.google package so it doesn't clash with
                             the com.google package in the micro manager .
@@ -118,11 +119,11 @@
                                     <shadedPattern>shaded.com.google</shadedPattern>
                                 </relocation>
                             </relocations>
-                            <artifactSet>
-                                <includes>
-                                    <include>*:*</include>
-                                </includes>
-                            </artifactSet>
+                            <!--<artifactSet>-->
+                                <!--<includes>-->
+                                    <!--<include>*:*</include>-->
+                                <!--</includes>-->
+                            <!--</artifactSet>-->
                             <createSourcesJar> true </createSourcesJar>
                             <shadeSourcesContent> true </shadeSourcesContent>
                         </configuration>
