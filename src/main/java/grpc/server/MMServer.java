@@ -15,7 +15,7 @@ public class MMServer {
         service.setDataProvider(dataProvider);
     }
 
-    private void start(int port) throws IOException {
+    public void start(int port) throws IOException {
 
 //        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/server.crt");
 //        File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/server1.key");
@@ -39,16 +39,17 @@ public class MMServer {
         }));
     }
 
-    private void stop() {
+    public void stop() {
         if (server != null) {
             server.shutdown();
+            System.out.println("server shut down");
         }
     }
 
     /**
      * Await termination on the main thread since the grpc library uses daemon threads.
      */
-    private void blockUntilShutdown() throws InterruptedException {
+    public void blockUntilShutdown() throws InterruptedException {
         if (server != null) {
             server.awaitTermination();
         }
