@@ -1,4 +1,4 @@
-package grpc.server;
+package grpc.rootscopeserver;
 
 public interface DataProvider {
     byte[] getImgData1();

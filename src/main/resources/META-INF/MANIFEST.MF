@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: grpc.server.MMServer
+Main-Class: grpc.rootscopeserver.MMServer
 

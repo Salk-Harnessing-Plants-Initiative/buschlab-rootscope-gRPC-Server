@@ -1,4 +1,4 @@
-package grpc.server;
+package grpc.rootscopeserver;
 
 import io.grpc.Server;
 import io.grpc.netty.NettyServerBuilder;
@@ -11,13 +11,13 @@ public class MMServer {
     private Server server;
     private static MmServiceImpl service = new MmServiceImpl();
 
-    public static void SetServiceDataProvider(DataProvider dataProvider) {
+    public void SetServiceDataProvider(DataProvider dataProvider) {
         service.setDataProvider(dataProvider);
     }
 
     public void start(int port) throws IOException {
 
-//        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/server.crt");
+//        File serverCertFile = new File ("/Users/alexander.bindeus/certFiles/rootscopeserver.crt");
 //        File serverKeyFile = new File ("/Users/alexander.bindeus/certFiles/server1.key");
 
 //        SelfSignedCertificate ssc = new SelfSignedCertificate();
@@ -33,16 +33,16 @@ public class MMServer {
         logger.info("Server started, listening on " + port);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             // Use stderr here since the logger may have been reset by its JVM shutdown hook.
-            System.err.println("*** shutting down gRPC server since JVM is shutting down");
+            System.err.println("*** shutting down gRPC rootscopeserver since JVM is shutting down");
             MMServer.this.stop();
-            System.err.println("*** server shut down");
+            System.err.println("*** rootscopeserver shut down");
         }));
     }
 
     public void stop() {
         if (server != null) {
             server.shutdown();
-            System.out.println("server shut down");
+            System.out.println("rootscopeserver shut down");
         }
     }
 
@@ -56,7 +56,7 @@ public class MMServer {
     }
 
     /**
-     * Main launches the server from the command line.
+     * Main launches the rootscopeserver from the command line.
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         final MMServer server = new MMServer();
